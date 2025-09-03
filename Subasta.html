@@ -1,43 +1,108 @@
 <!DOCTYPE html>
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    
-    <script>
-        const correo = document.getElementById("correoU").value;
-        const contraseña = document.getElementById("contraseñaU").value;
-    
-    </script>
-</head>
-<body>
-    <h1 class="text-center">
-        Subastas online
-    </h1>
-    <p class="text-center" >
-        El mejor sitio de subastas online.
-    </p>
-    
-    <!-- Log in usuario-->>
-    <div class="container mt-5">
-        <form>
+<html>
+
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        
+    </head>
+    <body>
+        <h1 class="text-center">
+            Subastas online
+        </h1>
+        <p class="text-center" >
+            El mejor sitio de subastas online.
+        </p>
+        
+        <!-- Log in usuario-->
+        <div id="ingreso" class="container mt-5">
+            <form onsubmit="ingresarUsuario(event)">
+                <div class="mb-3">
+                    <label for="correoIni" class="form-label">Correo: </label>
+                    <input type="text" id="correoIni" name="correoIni" required>
+                </div> 
+                <div class="mb-3">
+                    <label for="contraseñaIni" class="form-label">Contraseña: </label>
+                    <input type="text" id="contraseñaIni" name="contraseñaIni" aria-describedby="info" required>
+                    <div 
+                    id="info" class="form-text"> No compartas estos datos
+                </div>
+            </div>
+            
+            <button type="submit" id="ini">Ingresar</button>
+        </form>
+        <button type="button" id="noIni" onclick="mostrarRegistro()">No tengo una cuenta😞</button>
+        <!-- Registro usuario -->
+    </div>
+    <div id="registro" style="display: none;" class="container mt-5">
+        <form onsubmit="registrarUsuario(event)">
             <div class="mb-3">
-                <label for="correoU" class="form-label">Correo: </label>
-                <input type="text" id="correoU" name="correoU" required>
+                <label for="correoReg" class="form-label">Ingrese un correo: </label>
+                <input type="text" id="correoReg" name="correoReg" required>
             </div> 
             <div class="mb-3">
-                <label for="contraseñaU" class="form-label">Contraseña: </label>
-                <input type="text" id="contraseñaU" name="contraseñaU" aria-describedby="infoC" required>
-            <div 
-                id="infoC" class="form-text"> No compartas estos datos
+                <label for="contraseñaReg" class="form-label">Cree una contraseña: </label>
+                <input type="text" id="contraseñaReg" name="contraseñareg" required>
             </div>
-            </div>
-
-            <button type="submit" id="ini">Iniciar sesion</button>
-            <button type="submit" id="cre">Crear cuenta</button>
-
+            
+            <button type="submit" id="cre">Registrarme</button>
+            
         </form>
-
+        <button type="button" id="noCre" onclick="mostrarLogin()">Ya tengo una cuenta😊</button>
+        
     </div>
+    <script>
+        function mostrarRegistro() {
+            document.getElementById("ingreso").style.display = "none";
+            document.getElementById("registro").style.display = "block";
+        }
 
+        function mostrarLogin() {
+            document.getElementById("registro").style.display = "none";
+            document.getElementById("ingreso").style.display = "block";
+        }
+
+        function registrarUsuario(event){
+            event.preventDefault();
+            const correo = document.getElementById("correoReg").value;
+            const contraseña = document.getElementById("contraseñaReg").value;
+
+            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            usuarios.push({correo, contraseña});
+            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+            alert("Su cuenta ha sido creada con exito 😊")
+            mostrarLogin();
+        }
+        
+        function ingresarUsuario(event){
+            event.preventDefault();
+            const correo = document.getElementById("correoIni").value;
+            const contraseña = document.getElementById("contraseñaIni").value;
+
+            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            const usuarioValido = usuarios.find(u => u.correo === correo && u.contraseña === contraseña);
+
+            if (usuarioValido){
+                alert("Bienvenido 🎉 ¡Que comiencen las pujas!");
+            }
+            else{
+                alert("Correo o contraseña invalidos 😞")
+            }
+        }
+
+
+        localStorage.setItem("usuario", JSON.stringify({correo: correo, contraseña: contraseña}));
+
+        const usuarioI = JSON.parse(localStorage.getItem("usuario"));
+        if(usuarioI.correo === correoInput && user.contraseña == passInput){
+            alert("Bienvenido. Quen inicien la pujas!!!")
+        }
+
+
+
+    
+    </script>
     <!--Otra cosa-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
+</html>
