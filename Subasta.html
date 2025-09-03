@@ -5,8 +5,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         
     </head>
-    <body>
-        <h1 class="text-center">
+    <body >
+        <h1 class="text-center ">
             Subastas online
         </h1>
         <p class="text-center" >
@@ -15,39 +15,48 @@
         
         <!-- Log in usuario-->
         <div id="ingreso" class="container mt-5">
-            <form onsubmit="ingresarUsuario(event)">
-                <div class="mb-3">
-                    <label for="correoIni" class="form-label">Correo: </label>
+        <form class="p-4 border rounded shadow" style="max-width: 400px; margin: auto;" onsubmit="ingresarUsuario(event)">
+                <div class="text-center mb-2">
+                    <label for="correoIni" class="form-label">Correo:</label>
                     <input type="text" id="correoIni" name="correoIni" required>
                 </div> 
-                <div class="mb-3">
+                <div class="text-center" >
                     <label for="contraseñaIni" class="form-label">Contraseña: </label>
                     <input type="text" id="contraseñaIni" name="contraseñaIni" aria-describedby="info" required>
                     <div 
                     id="info" class="form-text"> No compartas estos datos
                 </div>
             </div>
-            
-            <button type="submit" id="ini">Ingresar</button>
+
+            <div class="text-center">
+
+                <button type="submit" id="ini" class="btn btn-outline-primary">Ingresar</button>
+            </div>
         </form>
-        <button type="button" id="noIni" onclick="mostrarRegistro()">No tengo una cuenta😞</button>
+        <div class="text-center" >
+            <button type="button" id="noIni" class="btn btn-outline-dark" onclick="mostrarRegistro()">No tengo una cuenta😞</button>
+        </div>
         <!-- Registro usuario -->
     </div>
     <div id="registro" style="display: none;" class="container mt-5">
-        <form onsubmit="registrarUsuario(event)">
-            <div class="mb-3">
+        <form class="p-4 border rounded shadow" style="max-width: 400px; margin: auto;" onsubmit="registrarUsuario(event)">
+            <div class="text-center mb-2">
                 <label for="correoReg" class="form-label">Ingrese un correo: </label>
                 <input type="text" id="correoReg" name="correoReg" required>
             </div> 
-            <div class="mb-3">
+            <div class="text-center" class="mb-3">
                 <label for="contraseñaReg" class="form-label">Cree una contraseña: </label>
                 <input type="text" id="contraseñaReg" name="contraseñareg" required>
             </div>
             
-            <button type="submit" id="cre">Registrarme</button>
+            <div class="text-center">
+                <button type="submit" id="cre" class="btn btn-outline-primary" >Registrarme</button>
+            </div>
             
         </form>
-        <button type="button" id="noCre" onclick="mostrarLogin()">Ya tengo una cuenta😊</button>
+        <div class="text-center">
+            <button type="button" id="noCre" class="btn btn-outline-dark" onclick="mostrarLogin()">Ya tengo una cuenta😊</button>
+        </div>
         
     </div>
     <script>
@@ -83,7 +92,9 @@
             const usuarioValido = usuarios.find(u => u.correo === correo && u.contraseña === contraseña);
 
             if (usuarioValido){
-                alert("Bienvenido 🎉 ¡Que comiencen las pujas!");
+                alert("Bienvenido 🎉 ¡Que comiencen las pujas!")
+                window.location.replace("inicio.html");
+;
             }
             else{
                 alert("Correo o contraseña invalidos 😞")
