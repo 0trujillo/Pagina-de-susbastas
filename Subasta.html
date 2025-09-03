@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <script>
+        const correo = document.getElementById("correoU").value;
+        const contraseña = document.getElementById("contraseñaU").value;
+    
+    </script>
+</head>
+<body>
+    <h1 class="text-center">
+        Subastas online
+    </h1>
+    <p class="text-center" >
+        El mejor sitio de subastas online.
+    </p>
+    
+    <!-- Log in usuario-->>
+    <div class="container mt-5">
+        <form>
+            <div class="mb-3">
+                <label for="correoU" class="form-label">Correo: </label>
+                <input type="text" id="correoU" name="correoU" required>
+            </div> 
+            <div class="mb-3">
+                <label for="contraseñaU" class="form-label">Contraseña: </label>
+                <input type="text" id="contraseñaU" name="contraseñaU" aria-describedby="infoC" required>
+            <div 
+                id="infoC" class="form-text"> No compartas estos datos
+            </div>
+            </div>
+
+            <button type="submit" id="ini">Iniciar sesion</button>
+            <button type="submit" id="cre">Crear cuenta</button>
+
+        </form>
+
+    </div>
+
+    <!--Otra cosa-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
