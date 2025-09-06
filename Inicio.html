@@ -38,6 +38,9 @@
             <h5 class="modal-title" id="perfilModalLabel">Perfil del Usuario</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
+          <div class="mb-3">
+            <button id="btnVerEnvios" class="btn btn-warning mt-3 w-100">📦 Ver Envíos</button>
+          </div>
           <div class="modal-body">
             <p><strong>Presupuesto actual:</strong> <span id="presupuestoActual">$0</span></p>
             <div class="mb-3">
@@ -250,6 +253,11 @@
       alert(`✅ Recargaste ${formatearDinero(monto)}. Nuevo presupuesto: ${formatearDinero(presupuesto)}`);
       document.getElementById("montoRecarga").value = "";
     });
+
+  document.getElementById("btnVerEnvios").addEventListener("click", () => {
+  window.location.href = "Envio.html";
+  });
+
     </script>
 </body>
 </html>
