@@ -65,11 +65,11 @@
 
     let subastas = [
       { id: 1, nombre: "Laptop Gamer", precio: 100, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Lgamer.jpg" },
-      { id: 2, nombre: "Smartphone", precio: 250, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Lgamer.jpg" },
-      { id: 3, nombre: "Auriculares", precio: 75, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Lgamer.jpg"  },
-      { id: 4, nombre: "Carta Pokémon", precio: 1000, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Lgamer.jpg"  },
-      { id: 5, nombre: "PlayStation 5", precio: 500, tiempo: 0, ganador: null, ultimaPujaUsuario: null },
-      { id: 6, nombre: "Bicicleta", precio: 300, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Lgamer.jpg"  }
+      { id: 2, nombre: "Smartphone", precio: 250, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "cel.webp" },
+      { id: 3, nombre: "Auriculares", precio: 75, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "auri.jpg"  },
+      { id: 4, nombre: "Carta Pokémon", precio: 1000, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "ctpokemon.jpg"},
+      { id: 5, nombre: "PlayStation 5", precio: 500, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "play5.jpg"},
+      { id: 6, nombre: "Bicicleta", precio: 300, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "bici.webp"  }
     ];
 
     const container = document.getElementById("subastasContainer");
@@ -116,7 +116,7 @@
 
       col.innerHTML = `
         <div class="card mb-4">
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="${subasta.nombre}">
+          <img src="${subasta.imagen}" class="card-img-top" alt="${subasta.nombre}">
           <div class="card-body">
             <h5 class="card-title">${subasta.nombre}</h5>
             <p class="card-text">Precio actual: <strong id="precio-${subasta.id}">${formatearDinero(subasta.precio)}</strong></p>
@@ -171,7 +171,7 @@
               estadoElemento.classList.remove("text-danger");
               estadoElemento.classList.add("text-success");
           } else if (subasta.ganador === "bot") {
-              estadoElemento.textContent = "Perdiendo... 🤖";
+              estadoElemento.textContent = "Perdiendo... 👤";
               estadoElemento.classList.remove("text-success");
               estadoElemento.classList.add("text-danger");
           } else {
@@ -180,7 +180,7 @@
 
         } else {
           clearInterval(intervaloTiempo);
-          tiempoElemento.textContent = `Ganador: ${subasta.ganador === "usuario" ? "Tú 🎉" : "Bot 🤖"}`;
+          tiempoElemento.textContent = `Ganador: ${subasta.ganador === "usuario" ? "Tú 🎉" : "Anonimo 👤"}`;
 
           botonPuja.textContent = "Terminada";
           botonPuja.disabled = true;
@@ -196,7 +196,7 @@
               estadoElemento.classList.remove("text-danger");
               estadoElemento.classList.add("text-success");
           } else {
-              estadoElemento.textContent = "Perdiste... 🤖";
+              estadoElemento.textContent = "Perdiste... 👤";
               estadoElemento.classList.remove("text-success");
               estadoElemento.classList.add("text-danger");
           }
@@ -212,7 +212,7 @@
           tr.innerHTML = `
             <td><img src="${subasta.imagen}" style="width:80px; height:auto;"></td>
             <td>${subasta.nombre}</td>
-            <td>${subasta.ganador === "usuario" ? "Tú 🎉" : "Bot 🤖"}</td>
+            <td>${subasta.ganador === "usuario" ? "Tú 🎉" : "Anonimo 👤"}</td>
             <td>${formatearDinero(subasta.precio)}</td>
           `;
           tablaResumen.appendChild(tr);
