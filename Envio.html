@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento de Envíos - Subastas Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .tracking-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .tracking-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #dee2e6;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -23px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #6c757d;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px #dee2e6;
+        }
+        .timeline-item.active::before {
+            background: #0d6efd;
+            box-shadow: 0 0 0 3px #0d6efd33;
+        }
+        .timeline-item.completed::before {
+            background: #198754;
+            box-shadow: 0 0 0 3px #19875433;
+        }
+        .envio-card {
+            transition: transform 0.2s;
+        }
+        .envio-card:hover {
+            transform: translateY(-2px);
+        }
+        .status-badge {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="inicio.html">
+                <i class="fas fa-gavel me-2"></i>Subastas Online
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="inicio.html">
+                    <i class="fas fa-home me-1"></i>Inicio
+                </a>
+                <img src="Imagenes/perfil.jpg" id="btnPerfil" style="width:40px; height:40px; cursor:pointer;" 
+                     class="rounded-circle ms-2" alt="Perfil">
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Encabezado -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="text-center mb-3">
+                    <i class="fas fa-shipping-fast text-primary me-2"></i>
+                    Seguimiento de Envíos
+                </h2>
+                <p class="text-center text-muted">Rastrea tus productos ganados en subastas</p>
+            </div>
+        </div>
+
+        <!-- Buscador de envíos -->
+        <div class="row mb-4">
+            <div class="col-md-8 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-search me-2"></i>Buscar Envío
+                        </h5>
+                        <div class="input-group">
+                            <input type="text" id="codigoSeguimiento" class="form-control" 
+                                   placeholder="Ingresa tu código de seguimiento...">
+                            <button class="btn btn-primary" onclick="buscarEnvio()">
+                                <i class="fas fa-search me-1"></i>Buscar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mis envíos -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h4 class="mb-3">
+                    <i class="fas fa-box-open text-success me-2"></i>
+                    Mis Envíos Activos
+                </h4>
+                <div class="row" id="enviosContainer">
+                    <!-- Los envíos se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Detalle de seguimiento -->
+        <div id="detalleEnvio" style="display: none;">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-route me-2"></i>
+                                Detalle del Envío
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-barcode me-2"></i>Código de Seguimiento:</h6>
+                                    <p class="fw-bold" id="codigoDetalle">-</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-calendar me-2"></i>Fecha Estimada de Entrega:</h6>
+                                    <p class="fw-bold text-primary" id="fechaEstimada">-</p>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-map-marker-alt me-2"></i>Origen:</h6>
+                                    <p id="direccionOrigen">-</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-home me-2"></i>Destino:</h6>
+                                    <p id="direccionDestino">-</p>
+                                </div>
+                            </div>
+
+                            <h6><i class="fas fa-timeline me-2"></i>Historial de Seguimiento:</h6>
+                            <div class="tracking-timeline" id="timeline">
+                                <!-- Timeline se carga aquí -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historial de envíos -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h4 class="mb-3">
+                    <i class="fas fa-history text-secondary me-2"></i>
+                    Historial de Envíos
+                </h4>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Producto</th>
+                                <th>Código de Seguimiento</th>
+                                <th>Estado</th>
+                                <th>Fecha de Envío</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historialEnvios">
+                            <!-- Historial se carga aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Perfil -->
+    <div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="perfilModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="perfilModalLabel">Perfil del Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Usuario:</strong> <span id="usuarioActual">Usuario Actual</span></p>
+                    <p><strong>Envíos Activos:</strong> <span id="enviosActivos">0</span></p>
+                    <p><strong>Envíos Completados:</strong> <span id="enviosCompletados">0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Datos simulados de envíos
+        let envios = [
+            {
+                id: 1,
+                producto: "Laptop Gamer",
+                imagen: "Imagenes/Lgamer.jpg",
+                codigoSeguimiento: "ENV001234567",
+                estado: "EN_TRANSITO",
+                fechaEnvio: "2025-01-08",
+                fechaEstimada: "2025-01-12",
+                direccionOrigen: "Santiago Centro, Santiago, Región Metropolitana",
+                direccionDestino: "Las Condes, Santiago, Región Metropolitana",
+                empresaTransporte: "StarkenEx",
+                historial: [
+                    { fecha: "2025-01-08 10:30", estado: "PREPARANDO", descripcion: "Paquete preparado para envío", ubicacion: "Centro de Distribución Santiago" },
+                    { fecha: "2025-01-08 14:15", estado: "EN_TRANSITO", descripcion: "Paquete en camino", ubicacion: "Ruta Santiago - Las Condes" },
+                    { fecha: "2025-01-09 09:20", estado: "EN_TRANSITO", descripcion: "Llegada a centro de distribución local", ubicacion: "Centro Las Condes" }
+                ]
+            },
+            {
+                id: 2,
+                producto: "PlayStation 5",
+                imagen: "Imagenes/play5.jpg",
+                codigoSeguimiento: "ENV001234568",
+                estado: "PREPARANDO",
+                fechaEnvio: "2025-01-09",
+                fechaEstimada: "2025-01-13",
+                direccionOrigen: "Valparaíso, Región de Valparaíso",
+                direccionDestino: "Providencia, Santiago, Región Metropolitana",
+                empresaTransporte: "ChileExpress",
+                historial: [
+                    { fecha: "2025-01-09 08:00", estado: "PENDIENTE", descripcion: "Envío registrado", ubicacion: "Valparaíso" },
+                    { fecha: "2025-01-09 11:30", estado: "PREPARANDO", descripcion: "Preparando paquete", ubicacion: "Centro Valparaíso" }
+                ]
+            }
+        ];
+
+        let historialCompleto = [
+            {
+                producto: "Smartphone",
+                codigoSeguimiento: "ENV001234560",
+                estado: "ENTREGADO",
+                fechaEnvio: "2025-01-01",
+                fechaEntrega: "2025-01-05"
+            },
+            {
+                producto: "Auriculares",
+                codigoSeguimiento: "ENV001234561",
+                estado: "ENTREGADO",
+                fechaEnvio: "2024-12-28",
+                fechaEntrega: "2025-01-02"
+            }
+        ];
+
+        function formatearFecha(fecha) {
+            return new Date(fecha).toLocaleDateString('es-CL', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function obtenerIconoEstado(estado) {
+            const iconos = {
+                'PENDIENTE': 'fas fa-clock text-warning',
+                'PREPARANDO': 'fas fa-box text-info',
+                'EN_TRANSITO': 'fas fa-truck text-primary',
+                'EN_REPARTO': 'fas fa-route text-success',
+                'ENTREGADO': 'fas fa-check-circle text-success',
+                'DEVUELTO': 'fas fa-undo text-danger',
+                'PERDIDO': 'fas fa-exclamation-triangle text-danger'
+            };
+            return iconos[estado] || 'fas fa-question-circle text-secondary';
+        }
+
+        function obtenerEstadoTexto(estado) {
+            const estados = {
+                'PENDIENTE': 'Pendiente',
+                'PREPARANDO': 'Preparando',
+                'EN_TRANSITO': 'En Tránsito',
+                'EN_REPARTO': 'En Reparto',
+                'ENTREGADO': 'Entregado',
+                'DEVUELTO': 'Devuelto',
+                'PERDIDO': 'Perdido'
+            };
+            return estados[estado] || estado;
+        }
+
+        function obtenerClaseEstado(estado) {
+            const clases = {
+                'PENDIENTE': 'bg-warning text-dark',
+                'PREPARANDO': 'bg-info text-white',
+                'EN_TRANSITO': 'bg-primary text-white',
+                'EN_REPARTO': 'bg-success text-white',
+                'ENTREGADO': 'bg-success text-white',
+                'DEVUELTO': 'bg-danger text-white',
+                'PERDIDO': 'bg-danger text-white'
+            };
+            return clases[estado] || 'bg-secondary text-white';
+        }
+
+        function cargarEnviosActivos() {
+            const container = document.getElementById('enviosContainer');
+            container.innerHTML = '';
+
+            envios.forEach(envio => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4 mb-3';
+                
+                col.innerHTML = `
+                    <div class="card envio-card h-100 shadow-sm">
+                        <img src="${envio.imagen}" class="card-img-top" alt="${envio.producto}" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title">${envio.producto}</h6>
+                            <p class="card-text text-muted small">
+                                <i class="fas fa-barcode me-1"></i>${envio.codigoSeguimiento}
+                            </p>
+                            <div class="mb-2">
+                                <span class="badge status-badge ${obtenerClaseEstado(envio.estado)}">
+                                    <i class="${obtenerIconoEstado(envio.estado)} me-1"></i>
+                                    ${obtenerEstadoTexto(envio.estado)}
+                                </span>
+                            </div>
+                            <p class="card-text small">
+                                <i class="fas fa-calendar me-1"></i>
+                                Entrega estimada: ${formatearFecha(envio.fechaEstimada)}
+                            </p>
+                            <div class="mt-auto">
+                                <button class="btn btn-outline-primary btn-sm w-100" onclick="verDetalleEnvio('${envio.codigoSeguimiento}')">
+                                    <i class="fas fa-eye me-1"></i>Ver Detalle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(col);
+            });
+        }
+
+        function cargarHistorial() {
+            const tbody = document.getElementById('historialEnvios');
+            tbody.innerHTML = '';
+
+            historialCompleto.forEach(envio => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${envio.producto}</td>
+                    <td><code>${envio.codigoSeguimiento}</code></td>
+                    <td>
+                        <span class="badge ${obtenerClaseEstado(envio.estado)}">
+                            <i class="${obtenerIconoEstado(envio.estado)} me-1"></i>
+                            ${obtenerEstadoTexto(envio.estado)}
+                        </span>
+                    </td>
+                    <td>${formatearFecha(envio.fechaEnvio)}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-info" onclick="verDetalleEnvio('${envio.codigoSeguimiento}')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function buscarEnvio() {
+            const codigo = document.getElementById('codigoSeguimiento').value.trim();
+            if (!codigo) {
+                alert('⚠️ Por favor ingresa un código de seguimiento');
+                return;
+            }
+
+            verDetalleEnvio(codigo);
+        }
+
+        function verDetalleEnvio(codigo) {
+            const envio = envios.find(e => e.codigoSeguimiento === codigo) || 
+                         historialCompleto.find(e => e.codigoSeguimiento === codigo);
+
+            if (!envio) {
+                alert('❌ No se encontró el envío con ese código');
+                return;
+            }
+
+            // Solo mostrar detalle completo para envíos activos
+            const envioCompleto = envios.find(e => e.codigoSeguimiento === codigo);
+            if (!envioCompleto) {
+                alert('ℹ️ Este envío ya fue completado. Consulta el historial para más detalles.');
+                return;
+            }
+
+            // Llenar datos del detalle
+            document.getElementById('codigoDetalle').textContent = envioCompleto.codigoSeguimiento;
+            document.getElementById('fechaEstimada').textContent = formatearFecha(envioCompleto.fechaEstimada);
+            document.getElementById('direccionOrigen').textContent = envioCompleto.direccionOrigen;
+            document.getElementById('direccionDestino').textContent = envioCompleto.direccionDestino;
+
+            // Generar timeline
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = '';
+
+            envioCompleto.historial.forEach((evento, index) => {
+                const isActive = index === envioCompleto.historial.length - 1;
+                const isCompleted = index < envioCompleto.historial.length - 1;
+                
+                const item = document.createElement('div');
+                item.className = `timeline-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`;
+                
+                item.innerHTML = `
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body py-2">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h6 class="mb-1">${obtenerEstadoTexto(evento.estado)}</h6>
+                                    <p class="mb-1 text-muted small">${evento.descripcion}</p>
+                                    <small class="text-muted">
+                                        <i class="fas fa-map-marker-alt me-1"></i>${evento.ubicacion}
+                                    </small>
+                                </div>
+                                <small class="text-muted">${new Date(evento.fecha).toLocaleString('es-CL')}</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                timeline.appendChild(item);
+            });
+
+            // Mostrar sección de detalle
+            document.getElementById('detalleEnvio').style.display = 'block';
+            document.getElementById('detalleEnvio').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Modal de perfil
+        const perfilModal = new bootstrap.Modal(document.getElementById('perfilModal'));
+        document.getElementById('btnPerfil').addEventListener('click', () => {
+            document.getElementById('enviosActivos').textContent = envios.length;
+            document.getElementById('enviosCompletados').textContent = historialCompleto.length;
+            perfilModal.show();
+        });
+
+        // Inicializar página
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarEnviosActivos();
+            cargarHistorial();
+        });
+
+        // Permitir buscar con Enter
+        document.getElementById('codigoSeguimiento').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                buscarEnvio();
+            }
+        });
+    </script>
+</body>
+</html>
