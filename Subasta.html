@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subastas Online - Inicio de Sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <!-- Header semántico -->
     <header class="bg-primary text-white py-3">
         <div class="container">
-            <h1 class="text-center mb-0">Subastas Online</h1>
+            <h1 class="text-center mb-0">
+                <i class="fas fa-gavel me-2"></i>Subastas Online
+            </h1>
             <p class="text-center mb-0">El mejor sitio de subastas online</p>
         </div>
     </header>
@@ -36,27 +39,40 @@
             <div class="col-md-6">
                 <article class="card shadow">
                     <div class="card-header bg-primary text-white">
-                        <h2 class="card-title mb-0">Iniciar Sesión</h2>
+                        <h2 class="card-title mb-0">
+                            <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
+                        </h2>
                     </div>
                     <div class="card-body">
                         <form id="formLogin" onsubmit="ingresarUsuario(event)" novalidate>
                             <div class="mb-3">
-                                <label for="correoIni" class="form-label">Correo electrónico:</label>
+                                <label for="correoIni" class="form-label">
+                                    <i class="fas fa-envelope me-2"></i>Correo electrónico:
+                                </label>
                                 <input type="email" id="correoIni" name="correoIni" class="form-control" 
                                        required autocomplete="email" 
-                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                       placeholder="ejemplo@correo.com">
                                 <div class="invalid-feedback">
                                     Por favor ingresa un correo válido
                                 </div>
-                                <div class="form-text">No compartas estos datos</div>
+                                <div class="form-text">
+                                    <i class="fas fa-info-circle me-1"></i>No compartimos estos datos
+                                </div>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="contraseñaIni" class="form-label">Contraseña:</label>
+                                <label for="contraseñaIni" class="form-label">
+                                    <i class="fas fa-lock me-2"></i>Contraseña:
+                                </label>
                                 <div class="input-group">
                                     <input type="password" id="contraseñaIni" name="contraseñaIni" 
-                                           class="form-control" required minlength="6" autocomplete="current-password">
-                                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('contraseñaIni')">
+                                           class="form-control" required minlength="6" 
+                                           autocomplete="current-password"
+                                           placeholder="Mínimo 6 caracteres">
+                                    <button class="btn btn-outline-secondary" type="button" 
+                                            onclick="togglePassword('contraseñaIni')"
+                                            title="Mostrar/Ocultar contraseña">
                                         <i class="fas fa-eye" id="eyeIcon1"></i>
                                     </button>
                                 </div>
@@ -66,15 +82,16 @@
                             </div>
 
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fas fa-sign-in-alt me-2"></i>Ingresar
                                 </button>
                             </div>
                         </form>
                         
                         <div class="text-center mt-3">
+                            <p class="text-muted mb-2">¿No tienes una cuenta?</p>
                             <button type="button" class="btn btn-outline-secondary" onclick="mostrarRegistro()">
-                                <i class="fas fa-user-plus me-2"></i>No tengo una cuenta
+                                <i class="fas fa-user-plus me-2"></i>Crear cuenta nueva
                             </button>
                         </div>
                     </div>
@@ -87,35 +104,49 @@
             <div class="col-md-6">
                 <article class="card shadow">
                     <div class="card-header bg-success text-white">
-                        <h2 class="card-title mb-0">Crear Cuenta</h2>
+                        <h2 class="card-title mb-0">
+                            <i class="fas fa-user-plus me-2"></i>Crear Cuenta
+                        </h2>
                     </div>
                     <div class="card-body">
                         <form id="formRegistro" onsubmit="registrarUsuario(event)" novalidate>
                             <div class="mb-3">
-                                <label for="nombreReg" class="form-label">Nombre completo:</label>
+                                <label for="nombreReg" class="form-label">
+                                    <i class="fas fa-user me-2"></i>Nombre completo:
+                                </label>
                                 <input type="text" id="nombreReg" name="nombreReg" class="form-control" 
-                                       required minlength="2" autocomplete="name">
+                                       required minlength="2" autocomplete="name"
+                                       placeholder="Tu nombre completo">
                                 <div class="invalid-feedback">
                                     El nombre debe tener al menos 2 caracteres
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="correoReg" class="form-label">Correo electrónico:</label>
+                                <label for="correoReg" class="form-label">
+                                    <i class="fas fa-envelope me-2"></i>Correo electrónico:
+                                </label>
                                 <input type="email" id="correoReg" name="correoReg" class="form-control" 
                                        required autocomplete="email"
-                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                       placeholder="ejemplo@correo.com">
                                 <div class="invalid-feedback">
                                     Por favor ingresa un correo válido
                                 </div>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="contraseñaReg" class="form-label">Crear contraseña:</label>
+                                <label for="contraseñaReg" class="form-label">
+                                    <i class="fas fa-lock me-2"></i>Crear contraseña:
+                                </label>
                                 <div class="input-group">
                                     <input type="password" id="contraseñaReg" name="contraseñaReg" 
-                                           class="form-control" required minlength="6" autocomplete="new-password">
-                                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('contraseñaReg')">
+                                           class="form-control" required minlength="6" 
+                                           autocomplete="new-password"
+                                           placeholder="Mínimo 6 caracteres">
+                                    <button class="btn btn-outline-secondary" type="button" 
+                                            onclick="togglePassword('contraseñaReg')"
+                                            title="Mostrar/Ocultar contraseña">
                                         <i class="fas fa-eye" id="eyeIcon2"></i>
                                     </button>
                                 </div>
@@ -123,29 +154,34 @@
                                     La contraseña debe tener al menos 6 caracteres
                                 </div>
                                 <div class="form-text">
+                                    <i class="fas fa-info-circle me-1"></i>
                                     Mínimo 6 caracteres, incluye números y letras
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="confirmarContraseña" class="form-label">Confirmar contraseña:</label>
+                                <label for="confirmarContraseña" class="form-label">
+                                    <i class="fas fa-check-circle me-2"></i>Confirmar contraseña:
+                                </label>
                                 <input type="password" id="confirmarContraseña" name="confirmarContraseña" 
-                                       class="form-control" required minlength="6">
+                                       class="form-control" required minlength="6"
+                                       placeholder="Repite tu contraseña">
                                 <div class="invalid-feedback">
                                     Las contraseñas no coinciden
                                 </div>
                             </div>
                             
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success btn-lg">
                                     <i class="fas fa-user-plus me-2"></i>Registrarme
                                 </button>
                             </div>
                         </form>
                         
                         <div class="text-center mt-3">
+                            <p class="text-muted mb-2">¿Ya tienes una cuenta?</p>
                             <button type="button" class="btn btn-outline-secondary" onclick="mostrarLogin()">
-                                <i class="fas fa-sign-in-alt me-2"></i>Ya tengo una cuenta
+                                <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión
                             </button>
                         </div>
                     </div>
@@ -157,12 +193,58 @@
         <section class="mt-5">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="text-center mb-4">¿Cómo funciona nuestra plataforma?</h3>
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                                title="Video promocional subastas" 
-                                allowfullscreen>
-                        </iframe>
+                    <div class="card shadow">
+                        <div class="card-header bg-info text-white">
+                            <h3 class="card-title mb-0">
+                                <i class="fas fa-play-circle me-2"></i>¿Cómo funciona nuestra plataforma?
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                        title="Video promocional subastas" 
+                                        allowfullscreen
+                                        loading="lazy">
+                                </iframe>
+                            </div>
+                            <div class="mt-3">
+                                <h5>Beneficios de usar Subastas Online:</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Subastas en tiempo real
+                                            </li>
+                                            <li class="list-group-item">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Productos verificados
+                                            </li>
+                                            <li class="list-group-item">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Envío seguro
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Precios competitivos
+                                            </li>
+                                            <li class="list-group-item">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Soporte 24/7
+                                            </li>
+                                            <li class="list-group-item">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Garantía de compra
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -174,34 +256,495 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5>Subastas Online</h5>
+                    <h5>
+                        <i class="fas fa-gavel me-2"></i>Subastas Online
+                    </h5>
                     <p>La mejor plataforma de subastas en línea de Chile.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3" title="Facebook">
+                            <i class="fab fa-facebook fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-white me-3" title="Twitter">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-white me-3" title="Instagram">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <h5>Enlaces útiles</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white-50">Términos y condiciones</a></li>
                         <li><a href="#" class="text-white-50">Política de privacidad</a></li>
-                        <li><a href="#" class="text-white-50">Ayuda</a></li>
+                        <li><a href="#" class="text-white-50">Centro de ayuda</a></li>
+                        <li><a href="#" class="text-white-50">Preguntas frecuentes</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h5>Contacto</h5>
-                    <p class="mb-1"><i class="fas fa-envelope me-2"></i>info@subastasonline.cl</p>
-                    <p class="mb-1"><i class="fas fa-phone me-2"></i>+56 9 1234 5678</p>
+                    <p class="mb-1">
+                        <i class="fas fa-envelope me-2"></i>info@subastasonline.cl
+                    </p>
+                    <p class="mb-1">
+                        <i class="fas fa-phone me-2"></i>+56 9 1234 5678
+                    </p>
+                    <p class="mb-1">
+                        <i class="fas fa-map-marker-alt me-2"></i>Santiago, Chile
+                    </p>
+                    <p class="mb-0">
+                        <i class="fas fa-clock me-2"></i>Lun - Vie: 9:00 - 18:00
+                    </p>
                 </div>
             </div>
             <hr class="my-3">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="mb-0">&copy; 2025 Subastas Online. Todos los derechos reservados.</p>
+                    <p class="mb-0">
+                        &copy; 2025 Subastas Online. Todos los derechos reservados. 
+                        | Desarrollado por 
+                        <a href="https://github.com/0trujillo" class="text-white">0trujillo</a> & 
+                        <a href="https://github.com/Stellexd" class="text-white">Stellexd</a>
+                    </p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <!-- JavaScript integrado -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    
+    <script>
+        // ====== SISTEMA DE AUTENTICACIÓN Y VALIDACIONES ======
+        
+        // Variables globales
+        let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        // Datos de usuarios de prueba (solo para desarrollo)
+        if (usuarios.length === 0) {
+            usuarios = [
+                {
+                    id: 1,
+                    nombre: "Usuario Demo",
+                    correo: "demo@ejemplo.com",
+                    contraseña: "123456",
+                    presupuesto: 15000,
+                    fechaRegistro: new Date().toISOString()
+                },
+                {
+                    id: 2,
+                    nombre: "Ana García",
+                    correo: "ana@ejemplo.com", 
+                    contraseña: "password",
+                    presupuesto: 8000,
+                    fechaRegistro: new Date().toISOString()
+                }
+            ];
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        }
+
+        // ====== FUNCIONES DE UTILIDAD ======
+        
+        function mostrarNotificacion(mensaje, tipo = 'info', duracion = 5000) {
+            // Crear elemento de notificación
+            const toast = document.createElement('div');
+            toast.className = `alert alert-${tipo} alert-dismissible fade show position-fixed`;
+            toast.style.cssText = `
+                top: 20px; 
+                right: 20px; 
+                z-index: 9999; 
+                min-width: 350px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            `;
+            
+            toast.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas ${tipo === 'success' ? 'fa-check-circle' : 
+                                   tipo === 'danger' ? 'fa-exclamation-triangle' : 
+                                   tipo === 'warning' ? 'fa-exclamation-circle' : 
+                                   'fa-info-circle'} me-2"></i>
+                    <div class="flex-grow-1">${mensaje}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Auto-eliminar después del tiempo especificado
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, duracion);
+        }
+
+        function validarEmail(email) {
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return regex.test(email);
+        }
+
+        function validarContraseña(contraseña) {
+            return contraseña.length >= 6;
+        }
+
+        function limpiarFormulario(formulario) {
+            formulario.reset();
+            formulario.classList.remove('was-validated');
+            
+            // Remover clases de validación de todos los inputs
+            const inputs = formulario.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.classList.remove('is-valid', 'is-invalid');
+            });
+        }
+
+        // ====== FUNCIONES DE NAVEGACIÓN ======
+        
+        function mostrarRegistro() {
+            document.getElementById('ingreso').style.display = 'none';
+            document.getElementById('registro').style.display = 'block';
+            
+            // Limpiar formulario de login
+            const formLogin = document.getElementById('formLogin');
+            limpiarFormulario(formLogin);
+            
+            // Scroll suave hacia el formulario
+            document.getElementById('registro').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+
+        function mostrarLogin() {
+            document.getElementById('registro').style.display = 'none';
+            document.getElementById('ingreso').style.display = 'block';
+            
+            // Limpiar formulario de registro
+            const formRegistro = document.getElementById('formRegistro');
+            limpiarFormulario(formRegistro);
+            
+            // Scroll suave hacia el formulario
+            document.getElementById('ingreso').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(inputId === 'contraseñaIni' ? 'eyeIcon1' : 'eyeIcon2');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // ====== FUNCIONES DE VALIDACIÓN EN TIEMPO REAL ======
+        
+        function configurarValidacionTiempoReal() {
+            // Validación para formulario de login
+            const formLogin = document.getElementById('formLogin');
+            const inputsLogin = formLogin.querySelectorAll('.form-control');
+            
+            inputsLogin.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.checkValidity()) {
+                        this.classList.remove('is-invalid');
+                        this.classList.add('is-valid');
+                    } else {
+                        this.classList.remove('is-valid');
+                        this.classList.add('is-invalid');
+                    }
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (this.value.trim() !== '') {
+                        if (this.checkValidity()) {
+                            this.classList.remove('is-invalid');
+                            this.classList.add('is-valid');
+                        } else {
+                            this.classList.remove('is-valid');
+                            this.classList.add('is-invalid');
+                        }
+                    }
+                });
+            });
+
+            // Validación para formulario de registro
+            const formRegistro = document.getElementById('formRegistro');
+            const inputsRegistro = formRegistro.querySelectorAll('.form-control');
+            
+            inputsRegistro.forEach(input => {
+                input.addEventListener('input', function() {
+                    // Validación especial para confirmar contraseña
+                    if (this.id === 'confirmarContraseña') {
+                        const contraseña = document.getElementById('contraseñaReg').value;
+                        const confirmar = this.value;
+                        
+                        if (confirmar === contraseña && confirmar.length >= 6) {
+                            this.setCustomValidity('');
+                            this.classList.remove('is-invalid');
+                            this.classList.add('is-valid');
+                        } else {
+                            this.setCustomValidity('Las contraseñas no coinciden');
+                            this.classList.remove('is-valid');
+                            this.classList.add('is-invalid');
+                        }
+                    } else {
+                        if (this.checkValidity()) {
+                            this.classList.remove('is-invalid');
+                            this.classList.add('is-valid');
+                        } else {
+                            this.classList.remove('is-valid');
+                            this.classList.add('is-invalid');
+                        }
+                    }
+                });
+            });
+
+            // Validación especial para contraseña de registro
+            document.getElementById('contraseñaReg').addEventListener('input', function() {
+                const confirmar = document.getElementById('confirmarContraseña');
+                if (confirmar.value) {
+                    confirmar.dispatchEvent(new Event('input'));
+                }
+            });
+        }
+
+        // ====== FUNCIONES DE AUTENTICACIÓN ======
+        
+        function registrarUsuario(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            // Validar formulario
+            if (!form.checkValidity()) {
+                event.stopPropagation();
+                form.classList.add('was-validated');
+                mostrarNotificacion('❌ Por favor corrige los errores en el formulario', 'danger');
+                return;
+            }
+
+            const nombre = formData.get('nombreReg').trim();
+            const correo = formData.get('correoReg').trim().toLowerCase();
+            const contraseña = formData.get('contraseñaReg');
+            const confirmarContraseña = formData.get('confirmarContraseña');
+
+            // Validaciones adicionales
+            if (!validarEmail(correo)) {
+                mostrarNotificacion('❌ El formato del correo no es válido', 'danger');
+                return;
+            }
+
+            if (!validarContraseña(contraseña)) {
+                mostrarNotificacion('❌ La contraseña debe tener al menos 6 caracteres', 'danger');
+                return;
+            }
+
+            if (contraseña !== confirmarContraseña) {
+                mostrarNotificacion('❌ Las contraseñas no coinciden', 'danger');
+                return;
+            }
+
+            // Verificar si el usuario ya existe
+            const usuarioExistente = usuarios.find(u => u.correo === correo);
+            if (usuarioExistente) {
+                mostrarNotificacion('⚠️ Ya existe una cuenta con este correo electrónico', 'warning');
+                return;
+            }
+
+            // Crear nuevo usuario
+            const nuevoUsuario = {
+                id: Date.now(),
+                nombre: nombre,
+                correo: correo,
+                contraseña: contraseña,
+                presupuesto: 5000, // Presupuesto inicial
+                fechaRegistro: new Date().toISOString()
+            };
+
+            // Agregar usuario y guardar
+            usuarios.push(nuevoUsuario);
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+            // Mostrar éxito y limpiar formulario
+            mostrarNotificacion(
+                `✅ ¡Bienvenido ${nombre}! Tu cuenta ha sido creada exitosamente. Presupuesto inicial: $5,000`, 
+                'success',
+                7000
+            );
+            
+            limpiarFormulario(form);
+            
+            // Cambiar a formulario de login después de 2 segundos
+            setTimeout(() => {
+                mostrarLogin();
+                // Pre-llenar el email en el login
+                document.getElementById('correoIni').value = correo;
+            }, 2000);
+        }
+
+        function ingresarUsuario(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Validar formulario
+            if (!form.checkValidity()) {
+                event.stopPropagation();
+                form.classList.add('was-validated');
+                mostrarNotificacion('❌ Por favor completa todos los campos correctamente', 'danger');
+                return;
+            }
+
+            const correo = formData.get('correoIni').trim().toLowerCase();
+            const contraseña = formData.get('contraseñaIni');
+
+            // Buscar usuario
+            const usuario = usuarios.find(u => u.correo === correo && u.contraseña === contraseña);
+
+            if (usuario) {
+                // Login exitoso
+                localStorage.setItem('usuarioActual', JSON.stringify(usuario));
+                
+                mostrarNotificacion(
+                    `🎉 ¡Bienvenido de vuelta, ${usuario.nombre}! Redirigiendo...`, 
+                    'success'
+                );
+
+                // Redirigir después de 1.5 segundos
+                setTimeout(() => {
+                    window.location.href = 'Inicio.html';
+                }, 1500);
+                
+            } else {
+                // Login fallido
+                const usuarioExiste = usuarios.find(u => u.correo === correo);
+                
+                if (usuarioExiste) {
+                    mostrarNotificacion('❌ Contraseña incorrecta', 'danger');
+                    // Limpiar solo la contraseña
+                    document.getElementById('contraseñaIni').value = '';
+                    document.getElementById('contraseñaIni').focus();
+                } else {
+                    mostrarNotificacion('❌ No existe una cuenta con ese correo electrónico', 'danger');
+                    // Sugerir registro
+                    setTimeout(() => {
+                        mostrarNotificacion(
+                            '💡 ¿No tienes cuenta? Haz clic en "Crear cuenta nueva"', 
+                            'info',
+                            4000
+                        );
+                    }, 1000);
+                }
+            }
+        }
+
+        // ====== FUNCIONES DE DEMOSTRACIÓN ======
+        
+        function llenarDatosDemo() {
+            // Llenar formulario de login con datos demo
+            document.getElementById('correoIni').value = 'demo@ejemplo.com';
+            document.getElementById('contraseñaIni').value = '123456';
+            
+            mostrarNotificacion(
+                '🎮 Datos demo cargados. ¡Haz clic en "Ingresar" para probar!', 
+                'info'
+            );
+        }
+
+        // ====== VERIFICACIÓN DE SESIÓN ======
+        
+        function verificarSesionExistente() {
+            const usuarioActual = localStorage.getItem('usuarioActual');
+            if (usuarioActual) {
+                const usuario = JSON.parse(usuarioActual);
+                mostrarNotificacion(
+                    `👋 Ya tienes una sesión activa, ${usuario.nombre}. Redirigiendo...`, 
+                    'info'
+                );
+                setTimeout(() => {
+                    window.location.href = 'Inicio.html';
+                }, 2000);
+            }
+        }
+
+        // ====== INICIALIZACIÓN ======
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar si ya hay sesión activa
+            verificarSesionExistente();
+            
+            // Configurar validaciones en tiempo real
+            configurarValidacionTiempoReal();
+            
+            // Mensaje de bienvenida inicial
+            setTimeout(() => {
+                mostrarNotificacion(
+                    '👋 ¡Bienvenido a Subastas Online! Inicia sesión o crea tu cuenta para empezar', 
+                    'info',
+                    6000
+                );
+            }, 1000);
+            
+            // Agregar botón demo (solo para desarrollo)
+            const headerContainer = document.querySelector('header .container');
+            const demoButton = document.createElement('button');
+            demoButton.className = 'btn btn-outline-light btn-sm position-absolute';
+            demoButton.style.cssText = 'top: 10px; right: 10px;';
+            demoButton.innerHTML = '<i class="fas fa-play me-1"></i>Demo';
+            demoButton.onclick = llenarDatosDemo;
+            headerContainer.style.position = 'relative';
+            headerContainer.appendChild(demoButton);
+        });
+
+        // ====== EVENT LISTENERS ADICIONALES ======
+        
+        // Detectar Enter en formularios
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const activeForm = document.querySelector('form:not([style*="display: none"])');
+                if (activeForm) {
+                    const submitButton = activeForm.querySelector('button[type="submit"]');
+                    if (submitButton) {
+                        submitButton.click();
+                    }
+                }
+            }
+        });
+
+        // Prevenir envío de formularios con errores
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                if (!this.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                this.classList.add('was-validated');
+            });
+        });
+
+        // ====== FUNCIONES EXPORTADAS GLOBALMENTE ======
+        
+        // Hacer funciones disponibles globalmente para onclick
+        window.mostrarRegistro = mostrarRegistro;
+        window.mostrarLogin = mostrarLogin;
+        window.togglePassword = togglePassword;
+        window.registrarUsuario = registrarUsuario;
+        window.ingresarUsuario = ingresarUsuario;
+        
+        console.log('🎯 Sistema de autenticación iniciado correctamente');
+        console.log('👥 Usuarios registrados:', usuarios.length);
+        console.log('🔧 Modo desarrollo: Botón demo disponible');
+    </script>
 </body>
 </html>
