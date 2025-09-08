@@ -9,7 +9,6 @@
 ## 📋 Tabla de Contenidos
 
 - [🎯 Características](#-características)
-- [🚀 Demo](#-demo)
 - [💻 Tecnologías](#-tecnologías)
 - [⚙️ Instalación](#️-instalación)
 - [📖 Uso](#-uso)
@@ -53,19 +52,6 @@
   - Animaciones y transiciones suaves
   - Iconografía con Font Awesome
 
-## 🚀 Demo
-
-🌐 **[Ver Demo en Vivo](https://0trujillo.github.io/Pagina-de-susbastas/)**
-
-### 🎮 Cómo probar:
-
-1. Visita el [enlace de la demo](https://0trujillo.github.io/Pagina-de-susbastas/)
-2. Crea una cuenta o usa las credenciales de prueba:
-   - **Email:** test@ejemplo.com
-   - **Contraseña:** 123456
-3. Explora las subastas activas y realiza pujas
-4. Gana una subasta y configura el envío
-
 ## 💻 Tecnologías
 
 ### Frontend
@@ -80,12 +66,7 @@
 - **GitHub Pages** - Hosting estático
 - **VS Code** - Editor de código
 - **Chrome DevTools** - Depuración
-
-### Futuras Implementaciones
-- **Node.js + Express** - Backend API
-- **Oracle Database** - Base de datos
-- **WebSockets** - Comunicación en tiempo real
-
+- 
 ## ⚙️ Instalación
 
 ### Prerrequisitos
