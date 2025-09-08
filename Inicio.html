@@ -1,53 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subastas Activas - Subastas Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Icono de perfil -->
-    <img src="Imagenes/perfil.jpg" id="btnPerfil" style="width:50px;cursor:pointer; position:fixed; top:20px; right:20px;" alt="Perfil">
+    <!-- Header semántico -->
+    <header class="bg-primary text-white py-3">
+        <div class="container">
+            <h1 class="text-center mb-0">Subastas Online</h1>
+            <p class="text-center mb-0">El mejor sitio de subastas online</p>
+        </div>
+    </header>
 
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Subastas Activas</h2>
-        <div class="row" id="subastasContainer"></div>
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#inicio">
+                <i class="fas fa-gavel me-2"></i>Inicio
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="Envio.html">
+                    <i class="fas fa-shipping-fast me-1"></i>Envíos
+                </a>
+                <a class="nav-link" href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container mt-5">
+        <!-- Icono de perfil -->
+        <img src="Imagenes/perfil.jpg" id="btnPerfil" 
+             style="width:50px;cursor:pointer; position:fixed; top:20px; right:20px;" 
+             alt="Perfil de usuario">
+
+        <section id="subastas-activas">
+            <h2 class="text-center mb-4">Subastas Activas</h2>
+            <div class="row" id="subastasContainer"></div>
+        </section>
 
         <!-- Apartado de Pujas Ganadas -->
-        <h3 class="text-center mt-5 mb-3">🏆 Pujas Ganadas</h3>
-        <ul class="list-group" id="pujasGanadas"></ul>
+        <section id="pujas-ganadas">
+            <h3 class="text-center mt-5 mb-3">🏆 Pujas Ganadas</h3>
+            <ul class="list-group" id="pujasGanadas"></ul>
+        </section>
 
         <!-- Resumen Final -->
-        <h3 class="text-center mt-5 mb-3">📑 Resumen Final de Subastas</h3>
-        <table class="table table-bordered table-striped text-center">
-          <thead class="table-dark">
-            <tr>
-              <th>Imagen</th>
-              <th>Artículo</th>
-              <th>Ganador</th>
-              <th>Precio Final</th>
-            </tr>
-          </thead>
-          <tbody id="tablaResumen"></tbody>
-        </table>
-    </div>
+        <section id="historial">
+            <h3 class="text-center mt-5 mb-3">📑 Resumen Final de Subastas</h3>
+            <article class="table-responsive">
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Artículo</th>
+                            <th>Ganador</th>
+                            <th>Precio Final</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaResumen"></tbody>
+                </table>
+            </article>
+        </section>
+
+        <!-- Video instructivo -->
+        <section class="mt-5">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4>¿Cómo participar en subastas?</h4>
+                </div>
+                <div class="card-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                title="Tutorial de subastas" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Subastas Online</h5>
+                    <p>La mejor plataforma de subastas en línea de Chile.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Enlaces útiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Términos y condiciones</a></li>
+                        <li><a href="#" class="text-white-50">Política de privacidad</a></li>
+                        <li><a href="#" class="text-white-50">Ayuda</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <p class="mb-1"><i class="fas fa-envelope me-2"></i>info@subastasonline.cl</p>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i>+56 9 1234 5678</p>
+                </div>
+            </div>
+            <hr class="my-3">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Subastas Online. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Modal Perfil -->
     <div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="perfilModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="perfilModalLabel">Perfil del Usuario</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Presupuesto actual:</strong> <span id="presupuestoActual">$0</span></p>
-            <div class="mb-3">
-              <label for="montoRecarga" class="form-label">Recargar presupuesto</label>
-              <input type="number" id="montoRecarga" class="form-control" min="1" max="100000" placeholder="Máximo $100000">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="perfilModalLabel">Perfil del Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Presupuesto actual:</strong> <span id="presupuestoActual">$0</span></p>
+                    <div class="mb-3">
+                        <label for="montoRecarga" class="form-label">Recargar presupuesto</label>
+                        <input type="number" id="montoRecarga" class="form-control" 
+                               min="1000" max="100000" step="1000" 
+                               placeholder="Mínimo $1,000 - Máximo $100,000"
+                               autocomplete="off">
+                        <div class="invalid-feedback" id="errorRecarga"></div>
+                        <div class="form-text">Máximo $100,000 por recarga</div>
+                    </div>
+                    <button id="btnRecargar" class="btn btn-success w-100">
+                        <i class="fas fa-credit-card me-2"></i>Recargar
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnVerEnvios" class="btn btn-warning">
+                        <i class="fas fa-shipping-fast me-2"></i>Ver Envíos
+                    </button>
+                </div>
             </div>
-            <button id="btnRecargar" class="btn btn-success">Recargar</button>
-          </div>
         </div>
-      </div>
+    </div>
+
+    <!-- Modal de Reclamar Subasta -->
+    <div class="modal fade" id="reclamarModal" tabindex="-1" aria-labelledby="reclamarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="reclamarModalLabel">
+                        <i class="fas fa-trophy me-2"></i>¡Felicitaciones!
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-trophy text-success" style="font-size: 3rem;"></i>
+                    </div>
+                    <h6 class="text-center">¡Has ganado la subasta!</h6>
+                    <p class="text-center">Producto: <strong id="productoGanado">-</strong></p>
+                    <p class="text-center">Precio final: <strong id="precioFinalGanado">-</strong></p>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Para completar tu compra, debes proceder con la información de envío.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Más tarde</button>
+                    <button type="button" class="btn btn-success" onclick="reclamarSubasta()">
+                        <i class="fas fa-gift me-2"></i>Reclamar y Ver Envío
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
@@ -56,20 +186,50 @@
     const presupuestoMaximo = 100000;
 
     function formatearDinero(monto) {
-      return monto.toLocaleString("es-CL", { style: "currency", currency: "CLP" });
+        return monto.toLocaleString("es-CL", { style: "currency", currency: "CLP" });
     }
 
     function actualizarPresupuestoUI() {
-      document.getElementById("presupuestoActual").textContent = formatearDinero(presupuesto);
+        document.getElementById("presupuestoActual").textContent = formatearDinero(presupuesto);
+    }
+
+    function validarMontoRecarga() {
+        const input = document.getElementById('montoRecarga');
+        const monto = parseInt(input.value);
+        const btnRecargar = document.getElementById('btnRecargar');
+        const errorDiv = document.getElementById('errorRecarga');
+        
+        if (isNaN(monto) || monto < 1000) {
+            input.setCustomValidity('El monto mínimo es $1,000');
+            input.classList.add('is-invalid');
+            errorDiv.textContent = 'El monto mínimo es $1,000';
+            btnRecargar.disabled = true;
+        } else if (monto > 100000) {
+            input.setCustomValidity('El monto máximo es $100,000');
+            input.classList.add('is-invalid');
+            errorDiv.textContent = 'El monto máximo es $100,000';
+            btnRecargar.disabled = true;
+        } else if (presupuesto + monto > presupuestoMaximo) {
+            input.setCustomValidity(`Excede el límite máximo. Máximo disponible: $${presupuestoMaximo - presupuesto}`);
+            input.classList.add('is-invalid');
+            errorDiv.textContent = `Excede el límite máximo. Máximo disponible: $${(presupuestoMaximo - presupuesto).toLocaleString()}`;
+            btnRecargar.disabled = true;
+        } else {
+            input.setCustomValidity('');
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+            errorDiv.textContent = '';
+            btnRecargar.disabled = false;
+        }
     }
 
     let subastas = [
-      { id: 1, nombre: "Laptop Gamer", precio: 100, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/Lgamer.jpg" },
-      { id: 2, nombre: "Smartphone", precio: 250, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/cel.webp" },
-      { id: 3, nombre: "Auriculares", precio: 75, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/auri.jpg"  },
-      { id: 4, nombre: "Carta Pokémon", precio: 1000, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/ctpokemon.jpg"},
-      { id: 5, nombre: "PlayStation 5", precio: 500, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/play5.jpg"},
-      { id: 6, nombre: "Bicicleta", precio: 300, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/bici.webp"  }
+        { id: 1, nombre: "Laptop Gamer", precio: 100, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/Lgamer.jpg" },
+        { id: 2, nombre: "Smartphone", precio: 250, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/cel.webp" },
+        { id: 3, nombre: "Auriculares", precio: 75, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/auri.jpg" },
+        { id: 4, nombre: "Carta Pokémon", precio: 1000, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/ctpokemon.jpg"},
+        { id: 5, nombre: "PlayStation 5", precio: 500, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/play5.jpg"},
+        { id: 6, nombre: "Bicicleta", precio: 300, tiempo: 0, ganador: null, ultimaPujaUsuario: null, imagen: "Imagenes/bici.webp" }
     ];
 
     const container = document.getElementById("subastasContainer");
@@ -77,179 +237,249 @@
     const tablaResumen = document.getElementById("tablaResumen");
 
     function formatearTiempo(segundos) {
-      const min = Math.floor(segundos / 60);
-      const sec = segundos % 60;
-      return `${min}:${sec < 10 ? "0" + sec : sec}`;
+        const min = Math.floor(segundos / 60);
+        const sec = segundos % 60;
+        return `${min}:${sec < 10 ? "0" + sec : sec}`;
+    }
+
+    function mostrarModalReclamar(subasta) {
+        document.getElementById('productoGanado').textContent = subasta.nombre;
+        document.getElementById('precioFinalGanado').textContent = formatearDinero(subasta.ultimaPujaUsuario);
+        
+        const modal = new bootstrap.Modal(document.getElementById('reclamarModal'));
+        modal.show();
+        
+        // Guardar información de la subasta ganada para el reclamo
+        window.subastaParaReclamar = subasta;
+    }
+
+    function reclamarSubasta() {
+        if (window.subastaParaReclamar) {
+            // Guardar información del producto ganado en localStorage para usar en Envio.html
+            const productoGanado = {
+                id: window.subastaParaReclamar.id,
+                nombre: window.subastaParaReclamar.nombre,
+                imagen: window.subastaParaReclamar.imagen,
+                precio: window.subastaParaReclamar.ultimaPujaUsuario,
+                fechaGanada: new Date().toISOString(),
+                estado: 'PENDIENTE_ENVIO'
+            };
+            
+            // Obtener productos ganados existentes o crear array vacío
+            let productosGanados = JSON.parse(localStorage.getItem('productosGanados')) || [];
+            productosGanados.push(productoGanado);
+            localStorage.setItem('productosGanados', JSON.stringify(productosGanados));
+            
+            // Cerrar modal y redirigir
+            const modal = bootstrap.Modal.getInstance(document.getElementById('reclamarModal'));
+            modal.hide();
+            
+            // Mostrar mensaje de éxito
+            alert('✅ ¡Producto reclamado exitosamente! Redirigiendo a envíos...');
+            
+            // Redirigir a página de envíos después de 1 segundo
+            setTimeout(() => {
+                window.location.href = 'Envio.html';
+            }, 1000);
+        }
     }
 
     function iniciarBot(subasta) {
-      const precioElemento = document.getElementById(`precio-${subasta.id}`);
+        const precioElemento = document.getElementById(`precio-${subasta.id}`);
 
-      function pujaBot() {
-        if (subasta.tiempo > 0) {
-          if (subasta.ganador !== "bot") {
-            subasta.precio += Math.floor(Math.random() * 20) + 5;
-            precioElemento.textContent = formatearDinero(subasta.precio);
-            subasta.ganador = "bot";
-          }
+        function pujaBot() {
+            if (subasta.tiempo > 0) {
+                if (subasta.ganador !== "bot") {
+                    subasta.precio += Math.floor(Math.random() * 20) + 5;
+                    precioElemento.textContent = formatearDinero(subasta.precio);
+                    subasta.ganador = "bot";
+                }
 
-          let delay = Math.random() * 4000 + 2000; 
-          if (subasta.precio >= 2000) delay *= 2;
-          if (subasta.precio >= 5000) delay *= 3;
+                let delay = Math.random() * 4000 + 2000; 
+                if (subasta.precio >= 2000) delay *= 2;
+                if (subasta.precio >= 5000) delay *= 3;
 
-          setTimeout(pujaBot, delay);
+                setTimeout(pujaBot, delay);
+            }
         }
-      }
 
-      setTimeout(pujaBot, Math.random() * 4000 + 2000);
+        setTimeout(pujaBot, Math.random() * 4000 + 2000);
     }
 
     function mostrarSubastaAleatoria() {
-      if (subastas.length === 0) return;
+        if (subastas.length === 0) return;
 
-      const index = Math.floor(Math.random() * subastas.length);
-      const subasta = subastas.splice(index, 1)[0];
-      subasta.tiempo = Math.floor(Math.random() * (240 - 60 + 1)) + 60;
+        const index = Math.floor(Math.random() * subastas.length);
+        const subasta = subastas.splice(index, 1)[0];
+        subasta.tiempo = Math.floor(Math.random() * (240 - 60 + 1)) + 60;
 
-      const col = document.createElement("div");
-      col.classList.add("col-md-4");
+        const col = document.createElement("div");
+        col.classList.add("col-md-4");
 
-      col.innerHTML = `
-        <div class="card mb-4">
-          <img src="${subasta.imagen}" class="card-img-top" alt="${subasta.nombre}">
-          <div class="card-body">
-            <h5 class="card-title">${subasta.nombre}</h5>
-            <p class="card-text">Precio actual: <strong id="precio-${subasta.id}">${formatearDinero(subasta.precio)}</strong></p>
-            <p class="card-text">Tiempo restante: <span class="text-danger" id="tiempo-${subasta.id}">${formatearTiempo(subasta.tiempo)}</span></p>
-            <button class="btn btn-primary w-100">Pujar</button>
-          </div>
-        </div>
-      `;
+        col.innerHTML = `
+            <div class="card mb-4">
+                <img src="${subasta.imagen}" class="card-img-top" alt="${subasta.nombre}">
+                <div class="card-body">
+                    <h5 class="card-title">${subasta.nombre}</h5>
+                    <p class="card-text">Precio actual: <strong id="precio-${subasta.id}">${formatearDinero(subasta.precio)}</strong></p>
+                    <p class="card-text">Tiempo restante: <span class="text-danger" id="tiempo-${subasta.id}">${formatearTiempo(subasta.tiempo)}</span></p>
+                    <button class="btn btn-primary w-100">Pujar</button>
+                </div>
+            </div>
+        `;
 
-      container.appendChild(col);
+        container.appendChild(col);
 
-      const botonPuja = col.querySelector("button");
-      const precioElemento = document.getElementById(`precio-${subasta.id}`);
-      const tiempoElemento = document.getElementById(`tiempo-${subasta.id}`);
+        const botonPuja = col.querySelector("button");
+        const precioElemento = document.getElementById(`precio-${subasta.id}`);
+        const tiempoElemento = document.getElementById(`tiempo-${subasta.id}`);
 
-      botonPuja.addEventListener("click", () => {
-        if (subasta.tiempo > 0) {
-          if (presupuesto >= 10) {
-            subasta.precio += 10;
-            precioElemento.textContent = formatearDinero(subasta.precio);
-            subasta.ganador = "usuario";
-            subasta.ultimaPujaUsuario = subasta.precio;
-            presupuesto -= 10;
-            actualizarPresupuestoUI();
+        botonPuja.addEventListener("click", () => {
+            if (subasta.tiempo > 0) {
+                if (presupuesto >= 10) {
+                    subasta.precio += 10;
+                    precioElemento.textContent = formatearDinero(subasta.precio);
+                    subasta.ganador = "usuario";
+                    subasta.ultimaPujaUsuario = subasta.precio;
+                    presupuesto -= 10;
+                    actualizarPresupuestoUI();
 
-            if (!col.querySelector(".ultimaPuja")) {
-                const p = document.createElement("p");
-                p.classList.add("text-success", "ultimaPuja");
-                col.querySelector(".card-body").appendChild(p);
+                    if (!col.querySelector(".ultimaPuja")) {
+                        const p = document.createElement("p");
+                        p.classList.add("text-success", "ultimaPuja");
+                        col.querySelector(".card-body").appendChild(p);
+                    }
+                    col.querySelector(".ultimaPuja").textContent = `Tu última puja: ${formatearDinero(subasta.ultimaPujaUsuario)}`;
+                } else {
+                    alert("⚠️ No tienes suficiente presupuesto para pujar.");
+                }
             }
-            col.querySelector(".ultimaPuja").textContent = `Tu última puja: ${formatearDinero(subasta.ultimaPujaUsuario)}`;
-          } else {
-            alert("⚠️ No tienes suficiente presupuesto para pujar.");
-          }
-        }
-      });
+        });
 
-      const intervaloTiempo = setInterval(() => {
-        if (subasta.tiempo > 0) {
-          subasta.tiempo--;
-          tiempoElemento.textContent = formatearTiempo(subasta.tiempo);
+        const intervaloTiempo = setInterval(() => {
+            if (subasta.tiempo > 0) {
+                subasta.tiempo--;
+                tiempoElemento.textContent = formatearTiempo(subasta.tiempo);
 
-          // Estado en tiempo real
-          if (!col.querySelector(".estadoPuja")) {
-              const p = document.createElement("p");
-              p.classList.add("estadoPuja", "fw-bold");
-              col.querySelector(".card-body").appendChild(p);
-          }
-          const estadoElemento = col.querySelector(".estadoPuja");
-          if (subasta.ganador === "usuario") {
-              estadoElemento.textContent = "¡Vas ganando! 🎉";
-              estadoElemento.classList.remove("text-danger");
-              estadoElemento.classList.add("text-success");
-          } else if (subasta.ganador === "bot") {
-              estadoElemento.textContent = "Perdiendo... 👤";
-              estadoElemento.classList.remove("text-success");
-              estadoElemento.classList.add("text-danger");
-          } else {
-              estadoElemento.textContent = "";
-          }
+                // Estado en tiempo real
+                if (!col.querySelector(".estadoPuja")) {
+                    const p = document.createElement("p");
+                    p.classList.add("estadoPuja", "fw-bold");
+                    col.querySelector(".card-body").appendChild(p);
+                }
+                const estadoElemento = col.querySelector(".estadoPuja");
+                if (subasta.ganador === "usuario") {
+                    estadoElemento.textContent = "¡Vas ganando! 🎉";
+                    estadoElemento.classList.remove("text-danger");
+                    estadoElemento.classList.add("text-success");
+                } else if (subasta.ganador === "bot") {
+                    estadoElemento.textContent = "Perdiendo... 👤";
+                    estadoElemento.classList.remove("text-success");
+                    estadoElemento.classList.add("text-danger");
+                } else {
+                    estadoElemento.textContent = "";
+                }
 
-        } else {
-          clearInterval(intervaloTiempo);
-          tiempoElemento.textContent = `Ganador: ${subasta.ganador === "usuario" ? "Tú 🎉" : "Anonimo 👤"}`;
+            } else {
+                clearInterval(intervaloTiempo);
+                tiempoElemento.textContent = `Ganador: ${subasta.ganador === "usuario" ? "Tú 🎉" : "Anonimo 👤"}`;
 
-          botonPuja.textContent = "Terminada";
-          botonPuja.disabled = true;
+                botonPuja.textContent = "Terminada";
+                botonPuja.disabled = true;
 
-          if (!col.querySelector(".estadoPuja")) {
-              const p = document.createElement("p");
-              p.classList.add("estadoPuja", "fw-bold");
-              col.querySelector(".card-body").appendChild(p);
-          }
-          const estadoElemento = col.querySelector(".estadoPuja");
-          if (subasta.ganador === "usuario") {
-              estadoElemento.textContent = "¡Ganaste! 🎉";
-              estadoElemento.classList.remove("text-danger");
-              estadoElemento.classList.add("text-success");
-          } else {
-              estadoElemento.textContent = "Perdiste... 👤";
-              estadoElemento.classList.remove("text-success");
-              estadoElemento.classList.add("text-danger");
-          }
+                if (!col.querySelector(".estadoPuja")) {
+                    const p = document.createElement("p");
+                    p.classList.add("estadoPuja", "fw-bold");
+                    col.querySelector(".card-body").appendChild(p);
+                }
+                const estadoElemento = col.querySelector(".estadoPuja");
+                if (subasta.ganador === "usuario") {
+                    estadoElemento.textContent = "¡Ganaste! 🎉";
+                    estadoElemento.classList.remove("text-danger");
+                    estadoElemento.classList.add("text-success");
+                } else {
+                    estadoElemento.textContent = "Perdiste... 👤";
+                    estadoElemento.classList.remove("text-success");
+                    estadoElemento.classList.add("text-danger");
+                }
 
-          if (subasta.ganador === "usuario") {
-            const li = document.createElement("li");
-            li.classList.add("list-group-item", "list-group-item-success");
-            li.textContent = `${subasta.nombre} - Ganaste con ${formatearDinero(subasta.ultimaPujaUsuario)}`;
-            listaGanadas.appendChild(li);
-          }
+                if (subasta.ganador === "usuario") {
+                    const li = document.createElement("li");
+                    li.classList.add("list-group-item", "list-group-item-success", "d-flex", "justify-content-between", "align-items-center");
+                    li.innerHTML = `
+                        <div>
+                            <strong>${subasta.nombre}</strong> - Ganaste con ${formatearDinero(subasta.ultimaPujaUsuario)}
+                        </div>
+                        <button class="btn btn-success btn-sm" onclick="mostrarModalReclamar({id: ${subasta.id}, nombre: '${subasta.nombre}', imagen: '${subasta.imagen}', ultimaPujaUsuario: ${subasta.ultimaPujaUsuario}})">
+                            <i class="fas fa-gift me-1"></i>Reclamar
+                        </button>
+                    `;
+                    listaGanadas.appendChild(li);
+                    
+                    // Mostrar automáticamente el modal después de 2 segundos
+                    setTimeout(() => {
+                        mostrarModalReclamar(subasta);
+                    }, 2000);
+                }
 
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td><img src="${subasta.imagen}" style="width:80px; height:auto;"></td>
-            <td>${subasta.nombre}</td>
-            <td>${subasta.ganador === "usuario" ? "Tú 🎉" : "Anonimo 👤"}</td>
-            <td>${formatearDinero(subasta.precio)}</td>
-          `;
-          tablaResumen.appendChild(tr);
-        }
-      }, 1000);
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td><img src="${subasta.imagen}" style="width:80px; height:auto;"></td>
+                    <td>${subasta.nombre}</td>
+                    <td>${subasta.ganador === "usuario" ? "Tú 🎉" : "Anonimo 👤"}</td>
+                    <td>${formatearDinero(subasta.precio)}</td>
+                    <td>
+                        ${subasta.ganador === "usuario" ? 
+                            `<button class="btn btn-outline-success btn-sm" onclick="mostrarModalReclamar({id: ${subasta.id}, nombre: '${subasta.nombre}', imagen: '${subasta.imagen}', ultimaPujaUsuario: ${subasta.ultimaPujaUsuario}})">
+                                <i class="fas fa-gift me-1"></i>Reclamar
+                            </button>` : 
+                            '<span class="text-muted">-</span>'
+                        }
+                    </td>
+                `;
+                tablaResumen.appendChild(tr);
+            }
+        }, 1000);
 
-      iniciarBot(subasta);
+        iniciarBot(subasta);
     }
 
     mostrarSubastaAleatoria();
     setInterval(() => {
-      if (subastas.length > 0) {
-        mostrarSubastaAleatoria();
-      }
+        if (subastas.length > 0) {
+            mostrarSubastaAleatoria();
+        }
     }, 15000);
 
     const perfilModal = new bootstrap.Modal(document.getElementById("perfilModal"));
     document.getElementById("btnPerfil").addEventListener("click", () => {
-      actualizarPresupuestoUI();
-      perfilModal.show();
+        actualizarPresupuestoUI();
+        perfilModal.show();
     });
 
+    // Configurar validación en tiempo real
+    document.getElementById('montoRecarga').addEventListener('input', validarMontoRecarga);
+
     document.getElementById("btnRecargar").addEventListener("click", () => {
-      const monto = parseInt(document.getElementById("montoRecarga").value);
-      if (isNaN(monto) || monto <= 0) {
-        alert("⚠️ Ingresa un monto válido.");
-        return;
-      }
-      if (presupuesto + monto > presupuestoMaximo) {
-        alert("⚠️ El presupuesto no puede superar $100000.");
-        return;
-      }
-      presupuesto += monto;
-      actualizarPresupuestoUI();
-      alert(`✅ Recargaste ${formatearDinero(monto)}. Nuevo presupuesto: ${formatearDinero(presupuesto)}`);
-      document.getElementById("montoRecarga").value = "";
+        const input = document.getElementById("montoRecarga");
+        const monto = parseInt(input.value);
+        
+        if (!input.checkValidity()) {
+            alert("⚠️ Por favor ingresa un monto válido.");
+            return;
+        }
+        
+        presupuesto += monto;
+        actualizarPresupuestoUI();
+        alert(`✅ Recargaste ${formatearDinero(monto)}. Nuevo presupuesto: ${formatearDinero(presupuesto)}`);
+        input.value = "";
+        input.classList.remove('is-valid');
     });
+
+    document.getElementById("btnVerEnvios").addEventListener("click", () => {
+        window.location.href = "Envio.html";
+    });
+
     </script>
 </body>
 </html>
