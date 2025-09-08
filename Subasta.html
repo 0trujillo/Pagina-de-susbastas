@@ -1,119 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subastas Online - Inicio de Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header semántico -->
+    <header class="bg-primary text-white py-3">
+        <div class="container">
+            <h1 class="text-center mb-0">Subastas Online</h1>
+            <p class="text-center mb-0">El mejor sitio de subastas online</p>
+        </div>
+    </header>
 
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        
-    </head>
-    <body >
-        <h1 class="text-center ">
-            Subastas online
-        </h1>
-        <p class="text-center" >
-            El mejor sitio de subastas online.
-        </p>
-        
-        <!-- Log in usuario-->
-        <div id="ingreso" class="container mt-5">
-        <form class="p-4 border rounded shadow" style="max-width: 400px; margin: auto;" onsubmit="ingresarUsuario(event)">
-                <div class="text-center mb-2">
-                    <label for="correoIni" class="form-label">Correo:</label>
-                    <input type="text" id="correoIni" name="correoIni" required>
-                </div> 
-                <div class="text-center" >
-                    <label for="contraseñaIni" class="form-label">Contraseña: </label>
-                    <input type="text" id="contraseñaIni" name="contraseñaIni" aria-describedby="info" required>
-                    <div 
-                    id="info" class="form-text"> No compartas estos datos
+    <!-- Navegación principal -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#inicio">
+                <i class="fas fa-gavel me-2"></i>Subastas Online
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#nosotros">Nosotros</a>
+                <a class="nav-link" href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container my-5">
+        <!-- Sección de Login -->
+        <section id="ingreso" class="row justify-content-center">
+            <div class="col-md-6">
+                <article class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="card-title mb-0">Iniciar Sesión</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="formLogin" onsubmit="ingresarUsuario(event)" novalidate>
+                            <div class="mb-3">
+                                <label for="correoIni" class="form-label">Correo electrónico:</label>
+                                <input type="email" id="correoIni" name="correoIni" class="form-control" 
+                                       required autocomplete="email" 
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                <div class="invalid-feedback">
+                                    Por favor ingresa un correo válido
+                                </div>
+                                <div class="form-text">No compartas estos datos</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="contraseñaIni" class="form-label">Contraseña:</label>
+                                <div class="input-group">
+                                    <input type="password" id="contraseñaIni" name="contraseñaIni" 
+                                           class="form-control" required minlength="6" autocomplete="current-password">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('contraseñaIni')">
+                                        <i class="fas fa-eye" id="eyeIcon1"></i>
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback">
+                                    La contraseña debe tener al menos 6 caracteres
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Ingresar
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="text-center mt-3">
+                            <button type="button" class="btn btn-outline-secondary" onclick="mostrarRegistro()">
+                                <i class="fas fa-user-plus me-2"></i>No tengo una cuenta
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sección de Registro -->
+        <section id="registro" style="display: none;" class="row justify-content-center">
+            <div class="col-md-6">
+                <article class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h2 class="card-title mb-0">Crear Cuenta</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="formRegistro" onsubmit="registrarUsuario(event)" novalidate>
+                            <div class="mb-3">
+                                <label for="nombreReg" class="form-label">Nombre completo:</label>
+                                <input type="text" id="nombreReg" name="nombreReg" class="form-control" 
+                                       required minlength="2" autocomplete="name">
+                                <div class="invalid-feedback">
+                                    El nombre debe tener al menos 2 caracteres
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="correoReg" class="form-label">Correo electrónico:</label>
+                                <input type="email" id="correoReg" name="correoReg" class="form-control" 
+                                       required autocomplete="email"
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                <div class="invalid-feedback">
+                                    Por favor ingresa un correo válido
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="contraseñaReg" class="form-label">Crear contraseña:</label>
+                                <div class="input-group">
+                                    <input type="password" id="contraseñaReg" name="contraseñaReg" 
+                                           class="form-control" required minlength="6" autocomplete="new-password">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('contraseñaReg')">
+                                        <i class="fas fa-eye" id="eyeIcon2"></i>
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback">
+                                    La contraseña debe tener al menos 6 caracteres
+                                </div>
+                                <div class="form-text">
+                                    Mínimo 6 caracteres, incluye números y letras
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="confirmarContraseña" class="form-label">Confirmar contraseña:</label>
+                                <input type="password" id="confirmarContraseña" name="confirmarContraseña" 
+                                       class="form-control" required minlength="6">
+                                <div class="invalid-feedback">
+                                    Las contraseñas no coinciden
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-user-plus me-2"></i>Registrarme
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="text-center mt-3">
+                            <button type="button" class="btn btn-outline-secondary" onclick="mostrarLogin()">
+                                <i class="fas fa-sign-in-alt me-2"></i>Ya tengo una cuenta
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Video promocional -->
+        <section class="mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-center mb-4">¿Cómo funciona nuestra plataforma?</h3>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                title="Video promocional subastas" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="text-center">
-
-                <button type="submit" id="ini" class="btn btn-outline-primary">Ingresar</button>
+    <!-- Footer informativo -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Subastas Online</h5>
+                    <p>La mejor plataforma de subastas en línea de Chile.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Enlaces útiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Términos y condiciones</a></li>
+                        <li><a href="#" class="text-white-50">Política de privacidad</a></li>
+                        <li><a href="#" class="text-white-50">Ayuda</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <p class="mb-1"><i class="fas fa-envelope me-2"></i>info@subastasonline.cl</p>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i>+56 9 1234 5678</p>
+                </div>
             </div>
-        </form>
-        <div class="text-center" >
-            <button type="button" id="noIni" class="btn btn-outline-dark" onclick="mostrarRegistro()">No tengo una cuenta😞</button>
+            <hr class="my-3">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 Subastas Online. Todos los derechos reservados.</p>
+                </div>
+            </div>
         </div>
-        <!-- Registro usuario -->
-    </div>
-    <div id="registro" style="display: none;" class="container mt-5">
-        <form class="p-4 border rounded shadow" style="max-width: 400px; margin: auto;" onsubmit="registrarUsuario(event)">
-            <div class="text-center mb-2">
-                <label for="correoReg" class="form-label">Ingrese un correo: </label>
-                <input type="text" id="correoReg" name="correoReg" required>
-            </div> 
-            <div class="text-center" class="mb-3">
-                <label for="contraseñaReg" class="form-label">Cree una contraseña: </label>
-                <input type="text" id="contraseñaReg" name="contraseñareg" required>
-            </div>
-            
-            <div class="text-center">
-                <button type="submit" id="cre" class="btn btn-outline-primary" >Registrarme</button>
-            </div>
-            
-        </form>
-        <div class="text-center">
-            <button type="button" id="noCre" class="btn btn-outline-dark" onclick="mostrarLogin()">Ya tengo una cuenta😊</button>
-        </div>
-        
-    </div>
-    <script>
-        function mostrarRegistro() {
-            document.getElementById("ingreso").style.display = "none";
-            document.getElementById("registro").style.display = "block";
-        }
+    </footer>
 
-        function mostrarLogin() {
-            document.getElementById("registro").style.display = "none";
-            document.getElementById("ingreso").style.display = "block";
-        }
-
-        function registrarUsuario(event){
-            event.preventDefault();
-            const correo = document.getElementById("correoReg").value;
-            const contraseña = document.getElementById("contraseñaReg").value;
-
-            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-            usuarios.push({correo, contraseña});
-            localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-            alert("Su cuenta ha sido creada con exito 😊")
-            mostrarLogin();
-        }
-        
-        function ingresarUsuario(event){
-            event.preventDefault();
-            const correo = document.getElementById("correoIni").value;
-            const contraseña = document.getElementById("contraseñaIni").value;
-
-            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-            const usuarioValido = usuarios.find(u => u.correo === correo && u.contraseña === contraseña);
-
-            if (usuarioValido){
-                alert("Bienvenido 🎉 ¡Que comiencen las pujas!")
-                window.location.replace("inicio.html");
-;
-            }
-            else{
-                alert("Correo o contraseña invalidos 😞")
-            }
-        }
-
-
-        localStorage.setItem("usuario", JSON.stringify({correo: correo, contraseña: contraseña}));
-
-        const usuarioI = JSON.parse(localStorage.getItem("usuario"));
-        if(usuarioI.correo === correoInput && user.contraseña == passInput){
-            alert("Bienvenido. Quen inicien la pujas!!!")
-        }
-
-
-
-    
-    </script>
-    <!--Otra cosa-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
