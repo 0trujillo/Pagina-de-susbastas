@@ -12,12 +12,6 @@
 - [💻 Tecnologías](#-tecnologías)
 - [⚙️ Instalación](#️-instalación)
 - [📖 Uso](#-uso)
-- [🏗️ Arquitectura](#️-arquitectura)
-- [📱 Capturas de Pantalla](#-capturas-de-pantalla)
-- [🔮 Roadmap](#-roadmap)
-- [🤝 Contribuir](#-contribuir)
-- [📄 Licencia](#-licencia)
-- [👥 Equipo](#-equipo)
 
 ## 🎯 Características
 
